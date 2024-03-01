@@ -22,3 +22,89 @@ build-backend = "pdm.backend"
 
 [tool.pdm]
 distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pre-commit>=3.6.2",
+    "ruff>=0.3.0",
+    "black>=24.2.0",
+    "isort>=5.13.2",
+    "pyright>=1.1.352",
+]
+test = [
+    "pytest>=8.0.2",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 120
+
+[tool.pyright]
+include = ["src/**/*.py"]
+ignore = ["alembic/"]
+
+venvPath = "."
+venv = ".venv"
+
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+analyzeUnannotatedFunctions = true
+strictParameterNoneValue = true
+enableTypeIgnoreComments = true
+reportMissingModuleSource = "warning"
+reportMissingImports = "error"
+reportUndefinedVariable = "error"
+reportAssertAlwaysTrue = "error"
+reportInvalidStringEscapeSequence = "error"
+reportInvalidTypeVarUse = "error"
+reportMissingTypeStubs = "none"
+reportSelfClsParameterName = "error"
+reportUnsupportedDunderAll = "error"
+reportUnusedExpression = "error"
+reportWildcardImportFromLibrary = "error"
+reportGeneralTypeIssues = "error"
+reportOptionalSubscript = "error"
+reportOptionalMemberAccess = "error"
+reportOptionalCall = "error"
+reportOptionalIterable = "error"
+reportOptionalContextManager = "error"
+reportOptionalOperand = "error"
+reportTypedDictNotRequiredAccess = "error"
+reportPrivateImportUsage = "error"
+reportUnboundVariable = "error"
+reportUnusedCoroutine = "error"
+reportConstantRedefinition = "error"
+reportDeprecated = "error"
+reportDuplicateImport = "error"
+reportFunctionMemberAccess = "error"
+reportIncompatibleMethodOverride = "error"
+reportIncompatibleVariableOverride = "error"
+reportIncompleteStub = "error"
+reportInconsistentConstructor = "error"
+reportInvalidStubStatement = "error"
+reportMatchNotExhaustive = "error"
+reportMissingParameterType = "error"
+reportMissingTypeArgument = "error"
+reportOverlappingOverload = "error"
+reportPrivateUsage = "error"
+reportTypeCommentUsage = "error"
+reportUnknownArgumentType = "error"
+reportUnknownLambdaType = "error"
+reportUnknownMemberType = "error"
+reportUnknownParameterType = "error"
+reportUnknownVariableType = "error"
+reportUnnecessaryCast = "error"
+reportUnnecessaryComparison = "error"
+reportUnnecessaryContains = "error"
+reportUnnecessaryIsInstance = "error"
+reportUnusedClass = "error"
+reportUnusedImport = "error"
+reportUnusedFunction = "error"
+reportUnusedVariable = "error"
+reportUntypedBaseClass = "error"
+reportUntypedClassDecorator = "error"
+reportUntypedFunctionDecorator = "error"
+reportUntypedNamedTuple = "error"
