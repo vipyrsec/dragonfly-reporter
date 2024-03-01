@@ -1,10 +1,4 @@
-from fastapi import FastAPI
+import uvicorn
+from dragonfly_reporter.app import app
 
-from .report import echo
-
-app = FastAPI()
-
-
-@app.get("/")
-async def root():
-    return await echo()
+uvicorn.run(app)
