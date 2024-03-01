@@ -1,0 +1,24 @@
+[project]
+name = "dragonfly-reporter"
+version = "0.1.0"
+description = "Reporter microservice"
+authors = [
+    { name = "Vipyr Security", email = "support@vipyrsec.com" },
+]
+dependencies = [
+    "fastapi>=0.110.0",
+    "httpx>=0.27.0",
+    "pydantic-settings>=2.2.1",
+    "uvicorn[standard]>=0.27.1",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
