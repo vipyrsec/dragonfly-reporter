@@ -35,6 +35,10 @@ test = [
     "pytest>=8.0.2",
 ]
 
+[tool.pdm.scripts]
+pre-commit = "pre-commit run --all-files"
+test = "pytest"
+
 [tool.isort]
 profile = "black"
 
