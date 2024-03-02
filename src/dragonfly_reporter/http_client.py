@@ -1,6 +1,9 @@
 from collections.abc import Generator
+from typing import Annotated
+from fastapi import Depends
 import httpx
 from dragonfly_reporter.constants import reporter_settings
+from functools import cache
 
 BASE_URL = "https://pypi.org/danger-api"
 
@@ -12,6 +15,11 @@ class BearerAuthentication(httpx.Auth):
         request.headers["Authorization"] = f"Bearer {self.token}"
         yield request
 
-auth = BearerAuthentication(token=reporter_settings.observation_api_token)
+@cache
+def http_client() -> httpx.AsyncClient:
+    auth = BearerAuthentication(token=reporter_settings.observation_api_token)
+    http_client = httpx.AsyncClient(auth=auth, base_url=BASE_URL)
 
-http_client = httpx.AsyncClient(auth=auth, base_url=BASE_URL)
+    return http_client
+
+HTTPClientDependency = Annotated[httpx.AsyncClient, Depends(http_client)]
