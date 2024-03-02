@@ -27,40 +27,29 @@ async def send_mail(
     attachments: list[Attachment] | None = None,
 ) -> None:
     """Send an email."""
-    sender = EmailAddress()
-    sender.address = Mail.sender
+    sender = EmailAddress(address=Mail.sender)
 
-    from_recipient = Recipient()
-    from_recipient.email_address = sender
+    from_recipient = Recipient(email_address=sender)
 
-    to_recipients = []
-    for to_address in to_addresses:
-        recipient_email = EmailAddress()
-        recipient_email.address = to_address
+    to_recipients = [
+        Recipient(email_address=EmailAddress(address=to_address))
+        for to_address in to_addresses
+    ]
 
-        to_recipient = Recipient()
-        to_recipient.email_address = recipient_email
-        to_recipients.append(to_recipient)  # pyright: ignore [reportUnknownMemberType]
+    bcc_recipients = [
+        Recipient(email_address=EmailAddress(address=bcc_address))
+        for bcc_address in bcc_addresses
+    ]
 
-    bcc_recipients = []
-    for bcc_address in bcc_addresses:
-        recipient_email = EmailAddress()
-        recipient_email.address = bcc_address
+    email_body = ItemBody(content=content, content_type=BodyType.Html)
 
-        to_recipient = Recipient()
-        to_recipient.email_address = recipient_email
-        bcc_recipients.append(to_recipient)  # pyright: ignore [reportUnknownMemberType]
-
-    email_body = ItemBody()
-    email_body.content = content
-    email_body.content_type = BodyType.Html
-
-    message = Message()
-    message.subject = subject
-    message.from_escaped = from_recipient
-    message.to_recipients = to_recipients
-    message.bcc_recipients = bcc_recipients
-    message.body = email_body
+    message = Message(
+        subject=subject,
+        from_escaped=from_recipient,
+        to_recipients=to_recipients,
+        bcc_recipients=bcc_recipients,
+        body=email_body,
+    )
     if attachments is not None:
         message.attachments = attachments
 
