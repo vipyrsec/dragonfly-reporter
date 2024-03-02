@@ -27,6 +27,7 @@ async def send_mail(
     attachments: list[Attachment] | None = None,
 ) -> None:
     """Send an email."""
+    reply_to_recipient = Recipient(email_address=EmailAddress(address=Mail.reply_to))
     from_recipient = Recipient(email_address=EmailAddress(address=Mail.sender))
 
     to_recipients = [
@@ -43,6 +44,7 @@ async def send_mail(
 
     message = Message(
         subject=subject,
+        reply_to=[reply_to_recipient],
         from_=from_recipient,
         to_recipients=to_recipients,
         bcc_recipients=bcc_recipients,

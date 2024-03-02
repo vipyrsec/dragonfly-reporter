@@ -13,6 +13,8 @@ class EnvConfig(BaseSettings):
 
 
 class _PyPI(EnvConfig, env_prefix="pypi_"):  # pyright: ignore
+    """Environment variables for PyPI."""
+
     base_url: str = "https://pypi.org/danger-api"
     api_token: str = ""
 
@@ -23,7 +25,9 @@ PyPI = _PyPI()
 class _Mail(EnvConfig, env_prefix="mail_"):  # pyright: ignore
     """Environment variables that are core to the app itself."""
 
+    reply_to: str = "support@vipyrsec.com"
     sender: str = "system@vipyrsec.com"
+    recipient: str = "security@pypi.org"
 
 
 Mail = _Mail()
