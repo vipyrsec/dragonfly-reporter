@@ -26,6 +26,6 @@ COPY --from=builder /app/__pypackages__/3.11/lib pkgs/
 
 COPY src/ src/
 
-CMD ["python", "-m", "uvicorn", "dragonfly_reporter.__main__:app", "--host", "0.0.0.0"]
+CMD ["python", "-m", "uvicorn", "dragonfly_reporter.app:app", "--host", "0.0.0.0"]
 
 EXPOSE 8000

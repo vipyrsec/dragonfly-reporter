@@ -13,7 +13,7 @@ class EnvConfig(BaseSettings):
 
 
 class Reporter(EnvConfig):
-    observation_api_token: str
+    observation_api_token: str = ""
 
 
 reporter_settings = Reporter()  # pyright: ignore
