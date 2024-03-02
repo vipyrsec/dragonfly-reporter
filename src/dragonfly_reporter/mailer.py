@@ -9,7 +9,9 @@ from msgraph.generated.models.email_address import EmailAddress
 from msgraph.generated.models.item_body import ItemBody
 from msgraph.generated.models.message import Message
 from msgraph.generated.models.recipient import Recipient
-from msgraph.generated.users.item.send_mail.send_mail_post_request_body import SendMailPostRequestBody
+from msgraph.generated.users.item.send_mail.send_mail_post_request_body import (
+    SendMailPostRequestBody,
+)
 
 from dragonfly_reporter.constants import Mail
 
@@ -38,7 +40,7 @@ async def send_mail(
 
         to_recipient = Recipient()
         to_recipient.email_address = recipient_email
-        to_recipients.append(to_recipient)
+        to_recipients.append(to_recipient)  # pyright: ignore [reportUnknownMemberType]
 
     bcc_recipients = []
     for bcc_address in bcc_addresses:
@@ -47,7 +49,7 @@ async def send_mail(
 
         to_recipient = Recipient()
         to_recipient.email_address = recipient_email
-        bcc_recipients.append(to_recipient)
+        bcc_recipients.append(to_recipient)  # pyright: ignore [reportUnknownMemberType]
 
     email_body = ItemBody()
     email_body.content = content
