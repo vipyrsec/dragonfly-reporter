@@ -18,3 +18,15 @@ def test_report(mock_http_client: MagicMock):
     test_client.post(f"/report/{project_name}", json=json)
 
     mock_http_client.post.assert_called_with("/danger-api/projects/remmy/observations", json=json)  # type: ignore
+
+
+def test_invalid_report_payload():
+    project_name = "remmy"
+    json = {
+        "kind": "is_malware",
+        "summary": "badguy package",
+        "extra": {"yara_rules": ["abc", "def"]},
+    }
+
+    response = test_client.post(f"/report/{project_name}", json=json)
+    assert response.status_code == 422
