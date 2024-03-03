@@ -13,7 +13,7 @@ from msgraph.generated.users.item.send_mail.send_mail_post_request_body import (
     SendMailPostRequestBody,
 )
 
-from dragonfly_reporter.constants import Mail
+from reporter.constants import Mail
 
 logger = getLogger(__name__)
 
@@ -53,5 +53,5 @@ async def send_mail(
     if attachments is not None:
         message.attachments = attachments
 
-    request_body = SendMailPostRequestBody(message=message)    
+    request_body = SendMailPostRequestBody(message=message)
     await graph_client.users.by_user_id(Mail.sender).send_mail.post(request_body)

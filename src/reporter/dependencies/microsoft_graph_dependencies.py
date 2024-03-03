@@ -3,7 +3,7 @@
 from azure.identity.aio import ClientSecretCredential
 from msgraph import GraphServiceClient
 
-from dragonfly_reporter.constants import Microsoft
+from reporter.constants import Microsoft
 
 
 def build_graph_client() -> GraphServiceClient:

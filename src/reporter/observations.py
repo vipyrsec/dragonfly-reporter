@@ -3,7 +3,7 @@ from __future__ import annotations
 import httpx
 from fastapi.encoders import jsonable_encoder
 
-from dragonfly_reporter.models import Observation
+from reporter.models import Observation
 
 
 async def send_observation(

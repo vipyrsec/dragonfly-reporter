@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-from dragonfly_reporter.http_client import HTTPClientDependency
-from dragonfly_reporter.models import Observation
-from dragonfly_reporter.observations import send_observation
+from reporter.http_client import HTTPClientDependency
+from reporter.models import Observation
+from reporter.observations import send_observation
 
 app = FastAPI()
 
