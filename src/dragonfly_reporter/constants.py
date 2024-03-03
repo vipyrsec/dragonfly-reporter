@@ -12,8 +12,34 @@ class EnvConfig(BaseSettings):
     )
 
 
-class Reporter(EnvConfig):
-    observation_api_token: str = ""
+class _PyPI(EnvConfig, env_prefix="pypi_"):  # pyright: ignore
+    """Environment variables for PyPI."""
+
+    base_url: str = "https://pypi.org/danger-api"
+    api_token: str = ""
 
 
-reporter_settings = Reporter()  # pyright: ignore
+PyPI = _PyPI()
+
+
+class _Mail(EnvConfig, env_prefix="mail_"):  # pyright: ignore
+    """Environment variables that are core to the app itself."""
+
+    reply_to: str = "support@vipyrsec.com"
+    sender: str = "system@vipyrsec.com"
+    recipient: str = "security@pypi.org"
+
+
+Mail = _Mail()
+
+
+class _Microsoft(EnvConfig, env_prefix="microsoft_"):  # pyright: ignore
+    """Environment variables for Microsoft."""
+
+    tenant_id: str = ""
+    client_id: str = ""
+    client_secret: str = ""
+    scopes: list[str] = ["https://graph.microsoft.com/.default"]
+
+
+Microsoft = _Microsoft()
