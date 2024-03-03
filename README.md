@@ -4,4 +4,9 @@ Experimental reporter microservice to split off reporting functionality from dra
 
 # Required Environment Variables
 
-- `PYPI_API_TOKEN` - API token to access PyPI's Observations API
+| Site                    | Description         |
+| ------------------------| ------------------- |
+| PYPI_API_TOKEN          | PyPI user API token |
+| MICROSOFT_TENANT_ID     | MS tenant           |
+| MICROSOFT_CLIENT_ID     | MS client ID        |
+| MICROSOFT_CLIENT_SECRET | MS client secret    |
