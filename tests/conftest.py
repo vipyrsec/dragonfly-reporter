@@ -3,8 +3,8 @@ from unittest.mock import MagicMock
 import httpx
 import pytest
 
-from dragonfly_reporter.app import app
-from dragonfly_reporter.http_client import http_client
+from reporter.app import app
+from reporter.http_client import http_client
 
 
 @pytest.fixture(scope="session")

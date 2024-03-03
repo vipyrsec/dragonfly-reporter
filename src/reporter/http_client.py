@@ -5,7 +5,7 @@ from typing import Annotated
 import httpx
 from fastapi import Depends
 
-from dragonfly_reporter.constants import PyPI
+from reporter.constants import PyPI
 
 
 class BearerAuthentication(httpx.Auth):

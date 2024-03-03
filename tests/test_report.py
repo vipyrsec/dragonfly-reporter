@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 from fastapi.testclient import TestClient
 
-from dragonfly_reporter.app import app
+from reporter.app import app
 
 test_client = TestClient(app)
 
