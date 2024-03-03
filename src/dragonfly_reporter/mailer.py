@@ -53,6 +53,5 @@ async def send_mail(
     if attachments is not None:
         message.attachments = attachments
 
-    request_body = SendMailPostRequestBody()
-    request_body.message = message
+    request_body = SendMailPostRequestBody(message=message)    
     await graph_client.users.by_user_id(Mail.sender).send_mail.post(request_body)
