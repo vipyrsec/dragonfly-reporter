@@ -19,6 +19,7 @@ from reporter.utils.pypi import file_path_from_inspector_url
 
 logger = getLogger(__name__)
 
+
 def build_report_email_content(
     *,
     name: str,
@@ -53,15 +54,9 @@ async def send_mail(
     reply_to_recipient = Recipient(email_address=EmailAddress(address=Mail.reply_to))
     from_recipient = Recipient(email_address=EmailAddress(address=Mail.sender))
 
-    to_recipients = [
-        Recipient(email_address=EmailAddress(address=to_address))
-        for to_address in to_addresses
-    ]
+    to_recipients = [Recipient(email_address=EmailAddress(address=to_address)) for to_address in to_addresses]
 
-    bcc_recipients = [
-        Recipient(email_address=EmailAddress(address=bcc_address))
-        for bcc_address in bcc_addresses
-    ]
+    bcc_recipients = [Recipient(email_address=EmailAddress(address=bcc_address)) for bcc_address in bcc_addresses]
 
     email_body = ItemBody(content=content, content_type=BodyType.Html)
 

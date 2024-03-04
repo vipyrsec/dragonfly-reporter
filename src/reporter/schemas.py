@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class ReportPayload(BaseModel):
     name: str
     version: str
