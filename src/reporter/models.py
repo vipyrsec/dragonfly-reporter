@@ -24,8 +24,6 @@ class Observation(BaseModel):
     @model_validator(mode="after")
     def model_validator(self: Observation) -> Observation:
         if self.kind == ObservationKind.Malware:
-            assert (
-                self.inspector_url is not None
-            ), "inspector_url is required when kind is malware"
+            assert self.inspector_url is not None, "inspector_url is required when kind is malware"
 
         return self
