@@ -1,8 +1,19 @@
 from fastapi import FastAPI
+import sentry_sdk
 
+from reporter.constants import GIT_SHA, Sentry
 from reporter.http_client import HTTPClientDependency
 from reporter.models import Observation
 from reporter.observations import send_observation
+
+sentry_sdk.init(
+    dsn=Sentry.dsn,
+    environment=Sentry.environment,
+    send_default_pii=True,
+    traces_sample_rate=0.05,
+    profiles_sample_rate=0.05,
+    release=f"{Sentry.release_prefix}@{GIT_SHA}",
+)
 
 app = FastAPI()
 
