@@ -6,9 +6,8 @@ from reporter.constants import Mail
 import sentry_sdk
 
 from reporter.constants import GIT_SHA, Sentry
-from reporter.http_client import HTTPClientDependency
+from reporter.pypi_client import PyPIClientDependency
 from reporter.models import Observation, ServerMetadata
-from reporter.observations import send_observation
 
 from reporter.dependencies import build_graph_client
 from reporter.mailer import build_report_email_content, send_mail
@@ -34,8 +33,8 @@ async def metadata() -> ServerMetadata:
 
 
 @app.post("/report/{project_name}")
-async def report_endpoint(project_name: str, observation: Observation, http_client: HTTPClientDependency):
-    await send_observation(project_name=project_name, observation=observation, http_client=http_client)
+async def report_endpoint(project_name: str, observation: Observation, pypi_client: PyPIClientDependency):
+    await pypi_client.send_observation(project_name=project_name, observation=observation)
 
 
 @app.post("/report/email")
