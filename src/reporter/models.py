@@ -7,7 +7,7 @@ from pydantic import BaseModel, model_validator
 
 
 class ServerMetadata(BaseModel):
-    """Metadata about the server."""
+    """Server metadata."""
 
     commit: str
 

@@ -18,7 +18,7 @@ sentry_sdk.init(
 app = FastAPI()
 
 
-@app.get("/", summary="Get the server's metadata")
+@app.get("/", summary="Get server metadata")
 async def metadata() -> ServerMetadata:
     """Get server metadata."""
     return ServerMetadata(
