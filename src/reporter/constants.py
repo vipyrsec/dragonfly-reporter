@@ -1,4 +1,9 @@
+from os import getenv
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# Git SHA for Sentry
+GIT_SHA = getenv("GIT_SHA", "development")
 
 
 class EnvConfig(BaseSettings):
@@ -10,6 +15,15 @@ class EnvConfig(BaseSettings):
         env_nested_delimiter="__",
         extra="ignore",
     )
+
+
+class _Sentry(EnvConfig, env_prefix="sentry_"):  # pyright: ignore
+    dsn: str = ""
+    environment: str = "production"
+    release_prefix: str = "dragonfly-reporter"
+
+
+Sentry = _Sentry()  # pyright: ignore
 
 
 class _PyPI(EnvConfig, env_prefix="pypi_"):  # pyright: ignore

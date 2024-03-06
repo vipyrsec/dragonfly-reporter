@@ -3,21 +3,34 @@ from fastapi import Depends, FastAPI
 from msgraph import GraphServiceClient
 from reporter.schemas import ReportPayload
 from reporter.constants import Mail
+import sentry_sdk
+
+from reporter.constants import GIT_SHA, Sentry
 from reporter.http_client import HTTPClientDependency
-from reporter.models import Observation
+from reporter.models import Observation, ServerMetadata
 from reporter.observations import send_observation
 
 from reporter.dependencies import build_graph_client
 from reporter.mailer import build_report_email_content, send_mail
 
+sentry_sdk.init(
+    dsn=Sentry.dsn,
+    environment=Sentry.environment,
+    send_default_pii=True,
+    traces_sample_rate=0.05,
+    profiles_sample_rate=0.05,
+    release=f"{Sentry.release_prefix}@{GIT_SHA}",
+)
+
 app = FastAPI()
 
 
-@app.get("/")
-async def echo(http_client: HTTPClientDependency) -> str:
-    """Return the username of the PyPI User."""
-    response = await http_client.get("/echo")
-    return response.text
+@app.get("/", summary="Get server metadata")
+async def metadata() -> ServerMetadata:
+    """Get server metadata."""
+    return ServerMetadata(
+        commit=GIT_SHA,
+    )
 
 
 @app.post("/report/{project_name}")
