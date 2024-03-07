@@ -4,16 +4,18 @@ import httpx
 import pytest
 
 from reporter.app import app
-from reporter.http_client import http_client
+from reporter.pypi_client import PyPIClient, get_pypi_client
 
 
 @pytest.fixture(scope="session")
-def mock_http_client() -> MagicMock:
-    return MagicMock(spec=httpx.AsyncClient)
+def mock_pypi_client() -> PyPIClient:
+    client = PyPIClient()
+    client.http_client = MagicMock(spec=httpx.AsyncClient)
+    return client
 
 
 @pytest.fixture(scope="session", autouse=True)
 def _override_dependencies(  # type: ignore
-    mock_http_client: MagicMock,
+    mock_pypi_client: PyPIClient,
 ):
-    app.dependency_overrides[http_client] = lambda: mock_http_client
+    app.dependency_overrides[get_pypi_client] = lambda: mock_pypi_client
