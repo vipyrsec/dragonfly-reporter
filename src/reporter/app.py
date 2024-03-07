@@ -40,8 +40,8 @@ async def echo(pypi_client: PyPIClientDependency) -> EchoResponse:
 
 
 @app.post("/report/{project_name}")
-async def report_endpoint(project_name: str, observation: Observation, http_client: HTTPClientDependency):
-    await send_observation(project_name=project_name, observation=observation, http_client=http_client)
+async def report_endpoint(project_name: str, observation: Observation, pypi_client: PyPIClientDependency):
+    await pypi_client.send_observation(project_name=project_name, observation=observation)
 
 
 @app.post("/report/email")

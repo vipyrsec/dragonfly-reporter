@@ -1,13 +1,11 @@
-from unittest.mock import MagicMock
-
 from fastapi.testclient import TestClient
-
+from reporter.pypi_client import PyPIClient
 from reporter.app import app
 
 test_client = TestClient(app)
 
 
-def test_report(mock_http_client: MagicMock):
+def test_report(mock_pypi_client: PyPIClient):
     project_name = "remmy"
     json = {
         "kind": "is_malware",
@@ -17,7 +15,7 @@ def test_report(mock_http_client: MagicMock):
     }
     test_client.post(f"/report/{project_name}", json=json)
 
-    mock_http_client.post.assert_called_with("/danger-api/projects/remmy/observations", json=json)  # type: ignore
+    mock_pypi_client.http_client.post.assert_called_with("/projects/remmy/observations", json=json)  # type: ignore
 
 
 def test_invalid_report_payload():
