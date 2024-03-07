@@ -7,7 +7,7 @@ import sentry_sdk
 
 from reporter.constants import GIT_SHA, Sentry
 from reporter.pypi_client import PyPIClientDependency
-from reporter.models import Observation, ServerMetadata
+from reporter.models import Observation, ServerMetadata, EchoResponse
 
 from reporter.dependencies import build_graph_client
 from reporter.mailer import build_report_email_content, send_mail
@@ -33,9 +33,10 @@ async def metadata() -> ServerMetadata:
 
 
 @app.get("/echo", summary="Echo the username of the PyPI User")
-async def echo(pypi_client: PyPIClientDependency) -> str:
+async def echo(pypi_client: PyPIClientDependency) -> EchoResponse:
     """Return the username of the PyPI User."""
-    return await pypi_client.echo()
+    username = await pypi_client.echo()
+    return EchoResponse(username=username)
 
 
 @app.post("/report/{project_name}")
