@@ -32,6 +32,12 @@ async def metadata() -> ServerMetadata:
     )
 
 
+@app.get("/echo", summary="Echo the username of the PyPI User")
+async def echo(pypi_client: PyPIClientDependency) -> str:
+    """Return the username of the PyPI User."""
+    return await pypi_client.echo()
+
+
 @app.post("/report/{project_name}")
 async def report_endpoint(project_name: str, observation: Observation, pypi_client: PyPIClientDependency):
     await pypi_client.send_observation(project_name=project_name, observation=observation)

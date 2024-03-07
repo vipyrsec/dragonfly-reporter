@@ -26,7 +26,11 @@ class PyPIClient:
         auth = BearerAuthentication(token=PyPI.api_token)
         self.http_client = httpx.AsyncClient(auth=auth, base_url=PyPI.base_url)
 
-    async def send_observation(self, project_name: str, observation: Observation):
+    async def echo(self) -> str:
+        response = await self.http_client.get("/echo")
+        return response.text
+
+    async def send_observation(self, project_name: str, observation: Observation) -> None:
         path = f"/danger-api/projects/{project_name}/observations"
         json = jsonable_encoder(observation)
 
