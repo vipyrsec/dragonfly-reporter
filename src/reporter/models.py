@@ -12,6 +12,12 @@ class ServerMetadata(BaseModel):
     commit: str
 
 
+class EchoResponse(BaseModel):
+    """Reponse from PyPI's echo endpoint."""
+
+    username: str
+
+
 # Taken from
 # https://github.com/pypi/warehouse/blob/4d2628560e6e764dc80a026fa080e9cf70446c81/warehouse/observations/models.py#L109-L122
 class ObservationKind(Enum):
