@@ -31,7 +31,7 @@ class PyPIClient:
         return response.text
 
     async def send_observation(self, project_name: str, observation: Observation) -> None:
-        path = f"/danger-api/projects/{project_name}/observations"
+        path = f"/projects/{project_name}/observations"
         json = jsonable_encoder(observation)
 
         await self.http_client.post(path, json=json)

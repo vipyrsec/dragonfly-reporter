@@ -15,7 +15,7 @@ def test_report(mock_pypi_client: PyPIClient):
     }
     test_client.post(f"/report/{project_name}", json=json)
 
-    mock_pypi_client.http_client.post.assert_called_with("/danger-api/projects/remmy/observations", json=json)  # type: ignore
+    mock_pypi_client.http_client.post.assert_called_with("/projects/remmy/observations", json=json)  # type: ignore
 
 
 def test_invalid_report_payload():
