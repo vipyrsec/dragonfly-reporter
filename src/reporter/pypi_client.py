@@ -28,7 +28,7 @@ class PyPIClient:
 
     async def echo(self) -> str:
         response = await self.http_client.get("/echo")
-        json = await response.json()
+        json = response.json()
         return json["username"]
 
     async def send_observation(self, project_name: str, observation: Observation) -> None:
