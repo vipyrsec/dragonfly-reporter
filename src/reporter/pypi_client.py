@@ -24,7 +24,8 @@ class PyPIClient:
 
     def __init__(self) -> None:
         auth = BearerAuthentication(token=PyPI.api_token)
-        self.http_client = httpx.AsyncClient(auth=auth, base_url=PyPI.base_url)
+        headers = {"Content-Type": "application/vnd.pypi.api-v0-danger+json"}
+        self.http_client = httpx.AsyncClient(auth=auth, base_url=PyPI.base_url, headers=headers)
 
     async def echo(self) -> str:
         response = await self.http_client.get("/echo")
