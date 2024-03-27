@@ -10,6 +10,11 @@ from reporter.constants import PyPI
 from reporter.models import Observation
 
 
+class ObservationsAPIFailure(Exception):
+    def __init__(self, response: httpx.Response) -> None:
+        self.response = response
+
+
 class BearerAuthentication(httpx.Auth):
     def __init__(self, *, token: str) -> None:
         self.token = token
@@ -36,7 +41,11 @@ class PyPIClient:
         path = f"/projects/{project_name}/observations"
         json = jsonable_encoder(observation)
 
-        await self.http_client.post(path, json=json)
+        response = await self.http_client.post(path, json=json)
+        try:
+            response.raise_for_status()
+        except httpx.HTTPStatusError:
+            raise ObservationsAPIFailure(response)
 
 
 @cache
