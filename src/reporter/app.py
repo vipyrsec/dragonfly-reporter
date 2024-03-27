@@ -1,16 +1,19 @@
+import logging
 from typing import Annotated
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from msgraph import GraphServiceClient
 from reporter.schemas import ReportPayload
 from reporter.constants import Mail
 import sentry_sdk
 
 from reporter.constants import GIT_SHA, Sentry
-from reporter.pypi_client import PyPIClientDependency
+from reporter.pypi_client import ObservationsAPIFailure, PyPIClientDependency
 from reporter.models import Observation, ServerMetadata, EchoResponse
 
 from reporter.dependencies import build_graph_client
 from reporter.mailer import build_report_email_content, send_mail
+
+log = logging.getLogger(__name__)
 
 sentry_sdk.init(
     dsn=Sentry.dsn,
@@ -41,7 +44,12 @@ async def echo(pypi_client: PyPIClientDependency) -> EchoResponse:
 
 @app.post("/report/{project_name}")
 async def report_endpoint(project_name: str, observation: Observation, pypi_client: PyPIClientDependency):
-    await pypi_client.send_observation(project_name=project_name, observation=observation)
+    try:
+        await pypi_client.send_observation(project_name=project_name, observation=observation)
+    except ObservationsAPIFailure as exc:
+        sentry_sdk.capture_exception(exc)
+        log.error(f"PyPI Observations API failed with response code {exc.response.status_code}: {exc.response.text}")
+        raise HTTPException(400, detail="PyPI Observations API failed")
 
 
 @app.post("/report/email")
