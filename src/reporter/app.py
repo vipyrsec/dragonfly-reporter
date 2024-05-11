@@ -1,17 +1,10 @@
 import logging
-from typing import Annotated
-from fastapi import Depends, FastAPI, HTTPException
-from msgraph import GraphServiceClient
-from reporter.schemas import ReportPayload
-from reporter.constants import Mail
+from fastapi import FastAPI, HTTPException
 import sentry_sdk
 
 from reporter.constants import GIT_SHA, Sentry
 from reporter.pypi_client import ObservationsAPIFailure, PyPIClientDependency
 from reporter.models import Observation, ServerMetadata, EchoResponse
-
-from reporter.dependencies import build_graph_client
-from reporter.mailer import build_report_email_content, send_mail
 
 log = logging.getLogger(__name__)
 
@@ -50,23 +43,3 @@ async def report_endpoint(project_name: str, observation: Observation, pypi_clie
         sentry_sdk.capture_exception(exc)
         log.error(f"PyPI Observations API failed with response code {exc.response.status_code}: {exc.response.text}")
         raise HTTPException(400, detail="PyPI Observations API failed")
-
-
-@app.post("/report/email")
-async def report_email_endpoint(
-    payload: ReportPayload, graph_client: Annotated[GraphServiceClient, Depends(build_graph_client)]
-):
-    content = build_report_email_content(
-        name=payload.name,
-        version=payload.version,
-        inspector_url=payload.inspector_url,
-        rules_matched=payload.rules_matched,
-        additional_information=payload.additional_information,
-    )
-    await send_mail(
-        graph_client,
-        to_addresses=[payload.recipient or Mail.recipient],
-        bcc_addresses=[],
-        subject=f"Automated PyPI Malware Report: {payload.name}@{payload.version}",
-        content=content,
-    )
