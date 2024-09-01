@@ -1,7 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/python:1.6.3": {
+    "ghcr.io/devcontainers/features/python:1.6.4": {
       "version": "3.11"
     },
     "ghcr.io/devcontainers/features/powershell:1.4.0": {}
