@@ -1,9 +1,9 @@
 # Dragonfly Reporter
 
-Experimental reporter microservice to split off reporting functionality from dragonfly-mainframe.
+A microservice to report malicious packages to PyPI.
 
-# Required Environment Variables
+## Required Environment Variables
 
-| Site                    | Description         |
-| ------------------------| ------------------- |
-| PYPI_API_TOKEN          | PyPI user API token |
+| Environment Variable | Description         |
+| -------------------- | ------------------- |
+| `PYPI_API_TOKEN`     | PyPI user API token |
