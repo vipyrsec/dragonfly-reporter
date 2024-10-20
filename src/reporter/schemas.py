@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
 
 
 class ReportPayload(BaseModel):
@@ -7,5 +6,5 @@ class ReportPayload(BaseModel):
     version: str
     rules_matched: list[str]
     inspector_url: str
-    additional_information: Optional[str] = None
-    recipient: Optional[str] = None
+    additional_information: str | None = None
+    recipient: str | None = None
