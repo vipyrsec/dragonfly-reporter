@@ -17,16 +17,16 @@ class EnvConfig(BaseSettings):
     )
 
 
-class _Sentry(EnvConfig, env_prefix="sentry_"):  # pyright: ignore
+class _Sentry(EnvConfig, env_prefix="sentry_"):
     dsn: str = ""
     environment: str = "production"
     release_prefix: str = "dragonfly-reporter"
 
 
-Sentry = _Sentry()  # pyright: ignore
+Sentry = _Sentry()
 
 
-class _PyPI(EnvConfig, env_prefix="pypi_"):  # pyright: ignore
+class _PyPI(EnvConfig, env_prefix="pypi_"):
     """Environment variables for PyPI."""
 
     base_url: str = "https://pypi.org/danger-api"

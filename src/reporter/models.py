@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, model_validator
 
@@ -13,7 +13,7 @@ class ServerMetadata(BaseModel):
 
 
 class EchoResponse(BaseModel):
-    """Reponse from PyPI's echo endpoint."""
+    """Response from PyPI's echo endpoint."""
 
     username: str
 
@@ -30,7 +30,7 @@ class ObservationKind(Enum):
 class Observation(BaseModel):
     kind: ObservationKind
     summary: str
-    inspector_url: Optional[str]
+    inspector_url: str | None
     extra: dict[str, Any] = {}
 
     @model_validator(mode="after")
