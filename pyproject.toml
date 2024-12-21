@@ -48,6 +48,7 @@ line-length = 120
     "DOC402",  # `yield` is not documented in docstring
     "DOC501",  # Raised exception `{id}` missing from docstring
     "G004",    # (Logging statement uses f-string) - Developer UX
+    "N818",    # Exception name {name} should be named with an Error suffix
     "S101",    # (Use of `assert` detected) - This should probably be changed
     "PLR6301", # (Method `x` could be a function, class method, or static method) - false positives
 
