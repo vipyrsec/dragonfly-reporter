@@ -1,10 +1,13 @@
+"""The application server."""
+
 import logging
-from fastapi import FastAPI, HTTPException
+
 import sentry_sdk
+from fastapi import FastAPI, HTTPException
 
 from reporter.constants import GIT_SHA, Sentry
+from reporter.models import EchoResponse, Observation, ServerMetadata
 from reporter.pypi_client import ObservationsAPIFailure, PyPIClientDependency
-from reporter.models import Observation, ServerMetadata, EchoResponse
 
 log = logging.getLogger(__name__)
 
@@ -23,9 +26,7 @@ app = FastAPI()
 @app.get("/", summary="Get server metadata")
 async def metadata() -> ServerMetadata:
     """Get server metadata."""
-    return ServerMetadata(
-        commit=GIT_SHA,
-    )
+    return ServerMetadata(commit=GIT_SHA)
 
 
 @app.get("/echo", summary="Echo the username of the PyPI User")
@@ -36,10 +37,25 @@ async def echo(pypi_client: PyPIClientDependency) -> EchoResponse:
 
 
 @app.post("/report/{project_name}")
-async def report_endpoint(project_name: str, observation: Observation, pypi_client: PyPIClientDependency):
+async def report(project_name: str, observation: Observation, pypi_client: PyPIClientDependency) -> None:
+    """Report an observation for the project.
+
+    Args:
+        project_name: The name of the PyPI project.
+        observation: The observation to report.
+
+    Raises
+    ------
+        HTTPException: In case of PyPI API errors.
+    """
     try:
         await pypi_client.send_observation(project_name=project_name, observation=observation)
     except ObservationsAPIFailure as exc:
+        log.exception(
+            "PyPI Observations API failed with response code %d: %s",
+            exc.response.status_code,
+            exc.response.text,
+        )
         sentry_sdk.capture_exception(exc)
-        log.error(f"PyPI Observations API failed with response code {exc.response.status_code}: {exc.response.text}")
-        raise HTTPException(400, detail="PyPI Observations API failed")
+
+        raise HTTPException(400, detail="PyPI Observations API failed") from exc
