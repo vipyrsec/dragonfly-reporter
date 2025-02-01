@@ -67,7 +67,7 @@ jobs:
 
       - name: Build and push Docker image
         id: docker_build_push
-        uses: docker/build-push-action@48aba3b46d1b1fec4febb7c5d0c644b249a11355  # v6.10.0
+        uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991  # v6.13.0
         with:
           builder: ${{ steps.buildx.outputs.name }}
           build-args: |
@@ -98,7 +98,7 @@ jobs:
 
       - name: Upload digest
         if: ${{ github.ref == 'refs/heads/main' || startswith(github.event.ref, 'refs/tags/v') }}
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b  # v4.5.0
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08  # v4.6.0
         with:
           if-no-files-found: error
           name: digests
