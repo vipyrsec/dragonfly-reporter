@@ -15,24 +15,32 @@ from reporter.models import Observation
 class ObservationsAPIFailure(Exception):
     """A failure of PyPI's Observations API.
 
-    Attributes
-    ----------
-        response: The HTTP error response.
+    Attributes:
+        response: The HTTP error response associated with this failure.
     """
 
     def __init__(self, response: httpx.Response) -> None:
+        """Initlalize the ObservationsAPIFailure instance.
+
+        Args:
+            response: The HTTP error response associated with this failure.
+        """
         self.response = response
 
 
 class BearerAuthentication(httpx.Auth):
     """An implementation of bearer authentication for HTTPX.
 
-    Attributes
-    ----------
-        token: The bearer token
+    Attributes:
+        token: The bearer token to use.
     """
 
     def __init__(self, *, token: str) -> None:
+        """Initialize the BearerAuthentication instance.
+
+        Args:
+            token: The bearer token to use.
+        """
         self.token = token
 
     def auth_flow(self, request: httpx.Request) -> Generator[httpx.Request, httpx.Response, None]:
@@ -41,8 +49,7 @@ class BearerAuthentication(httpx.Auth):
         Args:
             request: The HTTPX request.
 
-        Yields
-        ------
+        Yields:
             The request bearing the bearer token.
         """
         request.headers["Authorization"] = f"Bearer {self.token}"
@@ -50,9 +57,10 @@ class BearerAuthentication(httpx.Auth):
 
 
 class PyPIClient:
-    """PyPI client to interact with the PyPI API."""
+    """A client to interact with the PyPI API."""
 
     def __init__(self) -> None:
+        """Initialize the client instance."""
         auth = BearerAuthentication(token=PyPI.api_token)
         headers = {"Content-Type": "application/vnd.pypi.api-v0-danger+json"}
         self.http_client = httpx.AsyncClient(auth=auth, base_url=PyPI.base_url, headers=headers)
@@ -60,8 +68,7 @@ class PyPIClient:
     async def echo(self) -> str:
         """Echo the PyPI username of the token's user.
 
-        Returns
-        -------
+        Returns:
             The PyPI username of the token's user.
         """
         response = await self.http_client.get("/echo")
@@ -75,8 +82,7 @@ class PyPIClient:
             project_name: The name of the PyPI project.
             observation: THe observation to send.
 
-        Raises
-        ------
+        Raises:
             ObservationsAPIFailure: In case the request fails.
         """
         path = f"/projects/{project_name}/observations"
@@ -93,8 +99,7 @@ class PyPIClient:
 def get_pypi_client() -> PyPIClient:
     """Return an instance of the PyPI client.
 
-    Returns
-    -------
+    Returns:
         An instance of the PyPI client.
     """
     return PyPIClient()

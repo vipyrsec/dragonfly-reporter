@@ -15,7 +15,5 @@ def mock_pypi_client() -> PyPIClient:
 
 
 @pytest.fixture(scope="session", autouse=True)
-def _override_dependencies(
-    mock_pypi_client: PyPIClient,
-) -> None:
+def override_dependencies(mock_pypi_client: PyPIClient) -> None:
     app.dependency_overrides[get_pypi_client] = lambda: mock_pypi_client

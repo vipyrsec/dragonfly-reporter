@@ -34,8 +34,7 @@ class ObservationKind(Enum):
 class Observation(BaseModel):
     """An observation to report about a package.
 
-    Attributes
-    ----------
+    Attributes:
         kind: The kind of the observation.
         summary: A summary of the observation.
         inspector_url: The PyPI inspector URL for the observation.

@@ -41,11 +41,11 @@ async def report(project_name: str, observation: Observation, pypi_client: PyPIC
     """Report an observation for the project.
 
     Args:
-        project_name: The name of the PyPI project.
+        project_name: The name of the PyPI project to report.
         observation: The observation to report.
+        pypi_client: The PyPI API client used to report.
 
-    Raises
-    ------
+    Raises:
         HTTPException: In case of PyPI API errors.
     """
     try:
