@@ -117,11 +117,11 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "fastapi-slim", specifier = "==0.115.11" },
-    { name = "httpx", specifier = "==0.27.0" },
-    { name = "pydantic-settings", specifier = "==2.3.4" },
-    { name = "sentry-sdk", specifier = "==2.11.0" },
-    { name = "uvicorn", extras = ["standard"], specifier = "==0.30.3" },
+    { name = "fastapi-slim", specifier = "==0.115.12" },
+    { name = "httpx", specifier = "==0.28.1" },
+    { name = "pydantic-settings", specifier = "==2.8.1" },
+    { name = "sentry-sdk", specifier = "==2.26.1" },
+    { name = "uvicorn", extras = ["standard"], specifier = "==0.34.1" },
 ]
 
 [package.metadata.requires-dev]
@@ -137,16 +137,16 @@ test = [
 
 [[package]]
 name = "fastapi-slim"
-version = "0.115.11"
+version = "0.115.12"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "starlette" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d5/52/cbcd26e60d1a223bd5e7439517f622c489252e67a37673ac2676b8a58ce4/fastapi_slim-0.115.11.tar.gz", hash = "sha256:6640e961e7a3f16bc1d13170b4fa22db281c1ef1026c5d638a94d33454c8ca4f", size = 294540 }
+sdist = { url = "https://files.pythonhosted.org/packages/60/3f/f440b9ae0cef2153864301673c435f4f11878e0ead4b6efaa6025e080a39/fastapi_slim-0.115.12.tar.gz", hash = "sha256:e53b12240bf6492be4deea1d819c4891be75c810f8cdb044b962a0286cbfc5b4", size = 295352 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7c/49/4d6976cb67ac3f532e5f311e00a607bbdf8e4eae937b26d1e420964e1f8f/fastapi_slim-0.115.11-py3-none-any.whl", hash = "sha256:4651b38a472979ea83438657640a9685476174ea08cdfd5c2574a496a5b8fd7a", size = 94982 },
+    { url = "https://files.pythonhosted.org/packages/dd/02/c49dafcddcd2eb307fb319e438e38ccbb87758377a0b32d796d2491dc403/fastapi_slim-0.115.12-py3-none-any.whl", hash = "sha256:2ebe049cfcd1d8313c781b5405dc84f921f13523269b27692e9bfa08e219bbf8", size = 95219 },
 ]
 
 [[package]]
@@ -197,18 +197,17 @@ wheels = [
 
 [[package]]
 name = "httpx"
-version = "0.27.0"
+version = "0.28.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
     { name = "certifi" },
     { name = "httpcore" },
     { name = "idna" },
-    { name = "sniffio" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz", hash = "sha256:a0cb88a46f32dc874e04ee956e4c2764aba2aa228f650b06788ba6bda2962ab5", size = 126413 }
+sdist = { url = "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/41/7b/ddacf6dcebb42466abd03f368782142baa82e08fc0c1f8eaa05b4bae87d5/httpx-0.27.0-py3-none-any.whl", hash = "sha256:71d5465162c13681bff01ad59b2cc68dd838ea1f10e51574bac27103f00c91a5", size = 75590 },
+    { url = "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517 },
 ]
 
 [[package]]
@@ -331,15 +330,15 @@ wheels = [
 
 [[package]]
 name = "pydantic-settings"
-version = "2.3.4"
+version = "2.8.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "python-dotenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/11/fd8ae4050bc80b7d00a4396fb0c1c5acd6a7eabb3a9a38f653f7f16f6bd0/pydantic_settings-2.3.4.tar.gz", hash = "sha256:c5802e3d62b78e82522319bbc9b8f8ffb28ad1c988a99311d04f2a6051fca0a7", size = 59231 }
+sdist = { url = "https://files.pythonhosted.org/packages/88/82/c79424d7d8c29b994fb01d277da57b0a9b09cc03c3ff875f9bd8a86b2145/pydantic_settings-2.8.1.tar.gz", hash = "sha256:d5c663dfbe9db9d5e1c646b2e161da12f0d734d422ee56f567d0ea2cee4e8585", size = 83550 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e8/4f/aad03d5f711717d94d7de9684cb542343b392df1ad6889118636674fc983/pydantic_settings-2.3.4-py3-none-any.whl", hash = "sha256:11ad8bacb68a045f00e4f862c7a718c8a9ec766aa8fd4c32e39a0594b207b53a", size = 22562 },
+    { url = "https://files.pythonhosted.org/packages/0b/53/a64f03044927dc47aafe029c42a5b7aabc38dfb813475e0e1bf71c4a59d0/pydantic_settings-2.8.1-py3-none-any.whl", hash = "sha256:81942d5ac3d905f7f3ee1a70df5dfb62d5569c12f51a5a647defc1c3d9ee2e9c", size = 30839 },
 ]
 
 [[package]]
@@ -423,15 +422,15 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.11.0"
+version = "2.26.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6d/b3/39e4cd04b75a1ada788342d0d30a781cf65b5e43da806d5bf2bad4846ea3/sentry_sdk-2.11.0.tar.gz", hash = "sha256:4ca16e9f5c7c6bc2fb2d5c956219f4926b148e511fffdbbde711dc94f1e0468f", size = 276242 }
+sdist = { url = "https://files.pythonhosted.org/packages/85/26/099631caa51abffb1fd9e08c2138bc6681d3f288a5936c2fc4e054729611/sentry_sdk-2.26.1.tar.gz", hash = "sha256:759e019c41551a21519a95e6cef6d91fb4af1054761923dadaee2e6eca9c02c7", size = 323099 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bc/3c/a8ab3309d22c1d7142f811882e7d45449696f87c6e4e723b1433b6069b84/sentry_sdk-2.11.0-py2.py3-none-any.whl", hash = "sha256:d964710e2dbe015d9dc4ff0ad16225d68c3b36936b742a6fe0504565b760a3b7", size = 303581 },
+    { url = "https://files.pythonhosted.org/packages/23/32/0a30b4fafdb3d26d133f99bb566aaa6000004ee7f2c4b72aafea9237ab7e/sentry_sdk-2.26.1-py2.py3-none-any.whl", hash = "sha256:e99390e3f217d13ddcbaeaed08789f1ca614d663b345b9da42e35ad6b60d696a", size = 340558 },
 ]
 
 [[package]]
@@ -475,15 +474,15 @@ wheels = [
 
 [[package]]
 name = "uvicorn"
-version = "0.30.3"
+version = "0.34.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "h11" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/77/40/b650be95700dc83d14c5f2b9eac9deb23cbca757a12ee20e473b5ef1ac48/uvicorn-0.30.3.tar.gz", hash = "sha256:0d114d0831ff1adbf231d358cbf42f17333413042552a624ea6a9b4c33dcfd81", size = 42762 }
+sdist = { url = "https://files.pythonhosted.org/packages/86/37/dd92f1f9cedb5eaf74d9999044306e06abe65344ff197864175dbbd91871/uvicorn-0.34.1.tar.gz", hash = "sha256:af981725fc4b7ffc5cb3b0e9eda6258a90c4b52cb2a83ce567ae0a7ae1757afc", size = 76755 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/63/84/2a26b4eac1cf0c6b5b176dd4346cc4912af5e1b0efc150b865e28636ac34/uvicorn-0.30.3-py3-none-any.whl", hash = "sha256:94a3608da0e530cea8f69683aa4126364ac18e3826b6630d1a65f4638aade503", size = 62760 },
+    { url = "https://files.pythonhosted.org/packages/5f/38/a5801450940a858c102a7ad9e6150146a25406a119851c993148d56ab041/uvicorn-0.34.1-py3-none-any.whl", hash = "sha256:984c3a8c7ca18ebaad15995ee7401179212c59521e67bfc390c07fa2b8d2e065", size = 62404 },
 ]
 
 [package.optional-dependencies]
