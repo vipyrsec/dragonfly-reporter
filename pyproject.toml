@@ -15,8 +15,8 @@ dependencies = [
   "fastapi-slim==0.115.12",
   "httpx==0.28.1",
   "pydantic-settings==2.9.1",
-  "sentry-sdk==2.27.0",
-  "uvicorn[standard]==0.34.2",
+  "sentry-sdk==2.29.1",
+  "uvicorn[standard]==0.34.3",
 ]
 
   [project.urls]
