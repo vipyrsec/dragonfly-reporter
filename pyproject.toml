@@ -10,7 +10,7 @@ authors = [{name = "Vipyr Security Developers", email = "support@vipyrsec.com"}]
 license = {text = "MIT"}
 classifiers = ["Private :: Do Not Upload"]
 
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.13,<3.14"
 dependencies = [
   "fastapi-slim==0.118.0",
   "httpx==0.28.1",
