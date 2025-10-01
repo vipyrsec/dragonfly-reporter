@@ -12,11 +12,11 @@ classifiers = ["Private :: Do Not Upload"]
 
 requires-python = ">=3.12,<3.13"
 dependencies = [
-  "fastapi-slim==0.116.1",
+  "fastapi-slim==0.118.0",
   "httpx==0.28.1",
-  "pydantic-settings==2.10.1",
-  "sentry-sdk==2.35.2",
-  "uvicorn[standard]==0.35.0",
+  "pydantic-settings==2.11.0",
+  "sentry-sdk==2.39.0",
+  "uvicorn[standard]==0.37.0",
 ]
 
   [project.urls]
