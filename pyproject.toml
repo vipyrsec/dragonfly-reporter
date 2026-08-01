@@ -14,9 +14,9 @@ requires-python = ">=3.13,<3.14"
 dependencies = [
   "fastapi-slim==0.129.1",
   "httpx==0.28.1",
-  "pydantic-settings==2.13.1",
-  "sentry-sdk==2.53.0",
-  "uvicorn[standard]==0.41.0",
+  "pydantic-settings==2.14.2",
+  "sentry-sdk==2.66.1",
+  "uvicorn[standard]==0.52.0",
 ]
 
   [project.urls]
